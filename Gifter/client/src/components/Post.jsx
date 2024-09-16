@@ -15,6 +15,8 @@ export const Post = ({ post }) => {
           </Link>
         </p>
         <p>{post.caption}</p>
+        <h6>comments:</h6>
+        {post.comments?.map(comment => <p>{comment.message}</p>)}
       </CardBody>
     </Card>
   );

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { getAllPosts } from "../services/PostService";
+import { getAllPosts, getAllPostsWithComments } from "../services/PostService";
 import { Post } from "./Post";
 import { Button } from "reactstrap";
 import { useNavigate } from "react-router-dom";
@@ -11,7 +11,7 @@ const PostList = () => {
   const navigate = useNavigate();
 
   const getPosts = () => {
-    getAllPosts().then((allPosts) => setPosts(allPosts));
+    getAllPostsWithComments().then((allPosts) => setPosts(allPosts));
   };
 
   useEffect(() => {
