@@ -83,9 +83,9 @@ namespace Gifter.Controllers
         }
 
         [HttpGet("hottest")]
-        public IActionResult Hottest(string since)
+        public IActionResult Hottest(string since, bool sortDesc)
         {
-            return Ok(_postRepository.Hottest(since));
+            return Ok(_postRepository.Hottest(since, sortDesc));
         }
     }
 }

@@ -16,3 +16,8 @@ export const addPost = (singlePost) => {
         body: JSON.stringify(singlePost),
     });
 };
+
+export const getSearchedPosts = (q) => {
+    return fetch(`${baseUrl}/search?q=${q}`) 
+      .then((res) => res.json())
+  };

@@ -372,15 +372,8 @@ namespace Gifter.Repositories
             }
         }
 
-        public List<Post> Hottest(string since)
+        public List<Post> Hottest(DateTime since, bool sortDescending)
         {
-            DateTime criterion;
-
-            if (!DateTime.TryParse(since, out criterion))
-            {
-                return new List<Post>();
-            }
-
             using (var conn = Connection)
             {
                 conn.Open();
@@ -393,10 +386,19 @@ namespace Gifter.Repositories
                                 up.ImageUrl AS UserProfileImageUrl
                         FROM Post p 
                         LEFT JOIN UserProfile up ON p.UserProfileId = up.id
-                        WHERE p.DateCreated >= @Criterion;";
+                        WHERE p.DateCreated >= @Since;";
+
+                    if (sortDescending)
+                    {
+                        sql += " ORDER BY p.DateCreated DESC";
+                    }
+                    else
+                    {
+                        sql += " ORDER BY p.DateCreated";
+                    }
 
                     cmd.CommandText = sql;
-                    DbUtils.AddParameter(cmd, "@Criterion", criterion);
+                    DbUtils.AddParameter(cmd, "@Since", since);
                     var reader = cmd.ExecuteReader();
 
                     var posts = new List<Post>();
