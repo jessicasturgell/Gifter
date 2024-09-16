@@ -150,7 +150,7 @@ namespace Gifter.Repositories
                 using (var cmd = conn.CreateCommand())
                 {
                     cmd.CommandText = @"
-                        SELECT up.Id AS 'UserProfileId', up.[Name], up.Email, up.ImageUrl, up.Bio, up.DateCreated AS 'UserProfileDateCreated', 
+                        SELECT up.Id AS 'UserProfileId', up.[Name], up.Email, up.ImageUrl AS 'UserImageUrl', up.Bio, up.DateCreated AS 'UserProfileDateCreated', 
                                p.Id AS 'PostId', p.Title, p.ImageUrl, p.Caption, p.DateCreated AS 'PostDateCreated'
                         FROM UserProfile up
                         LEFT JOIN Post p
@@ -174,7 +174,7 @@ namespace Gifter.Repositories
                                 Id = DbUtils.GetInt(reader, "UserProfileId"),
                                 Name = DbUtils.GetString(reader, "Name"),
                                 Email = DbUtils.GetString(reader, "Email"),
-                                ImageUrl = DbUtils.GetString(reader, "ImageUrl"),
+                                ImageUrl = DbUtils.GetString(reader, "UserImageUrl"),
                                 Bio = DbUtils.GetString(reader, "Bio"),
                                 DateCreated = DbUtils.GetDateTime(reader, "UserProfileDateCreated"),
                                 Posts = new List<Post>()
