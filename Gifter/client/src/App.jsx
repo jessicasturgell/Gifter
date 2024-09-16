@@ -1,17 +1,17 @@
 import React from "react";
-import "./index.css";
-import PostList from "./components/PostList";
-import { BrowserRouter, Route, Routes } from "react-router-dom";
-import { PostForm } from "../forms/PostForm.jsx";
+import { BrowserRouter as Router } from "react-router-dom";
+import "./App.css";
+import ApplicationViews from "./components/ApplicationViews";
+import Header from "./components/Header";
 
 function App() {
   return (
-    <>
-      <BrowserRouter>
-          <PostForm />
-          <PostList />
-      </BrowserRouter>
-    </>
+    <div className="App">
+      <Router>
+        <Header />
+        <ApplicationViews />
+      </Router>
+    </div>
   );
 }
 

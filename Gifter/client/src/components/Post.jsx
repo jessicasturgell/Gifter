@@ -2,7 +2,6 @@ import React from "react";
 import { Card, CardImg, CardBody } from "reactstrap";
 import { Link } from "react-router-dom";
 
-
 export const Post = ({ post }) => {
   return (
     <Card className="m-4">
@@ -11,12 +10,10 @@ export const Post = ({ post }) => {
       <CardBody>
         <p>
           <Link to={`/posts/${post.id}`}>
-          <strong>{post.title}</strong>
+            <strong>{post.title}</strong>
           </Link>
         </p>
         <p>{post.caption}</p>
-        <h6>comments:</h6>
-        {post.comments?.map(comment => <p>{comment.message}</p>)}
       </CardBody>
     </Card>
   );

@@ -7,11 +7,11 @@ import { Search } from "./Search.jsx";
 
 const PostList = () => {
   const [posts, setPosts] = useState([]);
-  const [search, setSearch] = useState({}); 
+  const [search, setSearch] = useState({});
   const navigate = useNavigate();
 
   const getPosts = () => {
-    getAllPostsWithComments().then((allPosts) => setPosts(allPosts));
+    getAllPosts().then((allPosts) => setPosts(allPosts));
   };
 
   useEffect(() => {

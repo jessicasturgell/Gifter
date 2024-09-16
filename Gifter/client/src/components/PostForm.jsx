@@ -1,10 +1,15 @@
 import React, { useState } from "react";
-import { addPost } from "../src/services/PostService.jsx";
+import { addPost } from "../services/PostService.jsx";
 import { Form, FormGroup, Label, Input, Button } from "reactstrap";
+import { useNavigate } from "react-router-dom";
 
 export const PostForm = () => {
   const [post, setPost] = useState({});
-  const handleSave = () => {
+
+  const navigate = useNavigate();
+
+  const handleSave = (event) => {
+    event.preventDefault();
     if (post.title) {
       const singlePost = {
         title: post.title,
@@ -15,11 +20,14 @@ export const PostForm = () => {
         dateCreated: new Date().toISOString(),
       };
 
-      addPost(singlePost);
+      addPost(singlePost).then((p) => {
+        navigate("/");
+      });
     } else {
       window.alert("Please give your post a title!");
     }
   };
+
   return (
     <Form onSubmit={handleSave}>
       <FormGroup>
